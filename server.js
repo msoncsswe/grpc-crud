@@ -1,7 +1,8 @@
-const grpc = require('@grpc/grpc-js')
-const protoLoader = require('@grpc/proto-loader')
-
+const grpc = require('@grpc/grpc-js');
+const protoLoader = require('@grpc/proto-loader');
 const PROTO_FILE = './proto/contacts.proto';
+const Contacts = require('./models/contactModel');
+const contactImpl = require('./service_Impl/contactImpl');
 
 const options = {
     keepCase: true,
@@ -68,7 +69,9 @@ const getContactList = (call, callback) => {
         }
 }
 
-
+const createContact = (call, callback) => {
+    const res = contactImpl.addContactDB(call);   
+}
 
 grpcServer.addService(contactsProto.ContactService.service, {GetContact: getContact, GetContactList: getContactList});
 

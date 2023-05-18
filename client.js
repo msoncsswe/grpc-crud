@@ -31,3 +31,11 @@ client.GetContactList({}, (err, contact) => {
         console.log(contact);
     }
 })
+
+client.CreateContactList({firstName: 'Patryk', lastName: 'Ngyuen', telNum: 1234567890, email: 'patNgyuen@aol.com'}, (err, contact) => {
+    if(err) {
+        console.log(`error creating contact`);
+    } else {
+        console.log(`Contact created: ${contact}`)
+    }
+})
