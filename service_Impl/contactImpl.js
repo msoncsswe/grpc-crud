@@ -26,20 +26,19 @@ contactImpl.getContactDB =  (contact) => {
     return k; 
 }
 
-contactImpl.getContactList = (contact) => {
+contactImpl.getContactList = async (contact) => {
     console.log('in getcontactlist method')
-    const allContactList = Contacts.find(contact)
-    .then((data) => {
-        if(data === null){
-            console.log('did not find contact list')
-        } else{
-            console.log('in contactImpl with data: ', data)
-            return data
+    try {
+        const allContactList = await Contacts.find(contact)
+     if(allContactList === null) {
+        console.log('cannot find contacts')
+        } else {
+            return {contacts: allContactList}
         }
-    })
-    .catch(err => console.log('error in getting all contacts'))
-    console.log(allContactList)
-    return allContactList
+    } catch(err) {
+        console.log('error in getting all contacts')
+        console.trace('after catch ', allContactList)
+    }
 }
 
 module.exports = contactImpl;

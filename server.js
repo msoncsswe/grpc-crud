@@ -23,7 +23,7 @@ const getContact = async (call, callback) => {
     console.log('trying to get contact')
     try{
         const response =  await contactImpl.getContactDB(call.request)
-        await console.log('back in server with data', response)
+        console.log('back in server with data', response)
         await callback(null, response);
         }
 
@@ -35,9 +35,9 @@ const getContact = async (call, callback) => {
 //this function gets all of the contacts
 const getContactList = async (call, callback) => {
         try{
-            const response = await contactImpl.getContactList(call.request)
+            const response = await contactImpl.getContactList({})
             console.log('this is response', response)
-            await callback(null, response)
+            callback(null, response)
         }
         catch(err){
             console.log(err, 'this is an error bish')
