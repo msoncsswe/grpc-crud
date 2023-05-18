@@ -20,19 +20,15 @@ const grpcServer = new grpc.Server();
 
 //this function gets one contact
 const getContact = (call, callback) => {
+    console.log('trying to get contact')
 
-    const response = {
-        firstName: 'Miri',
-        lastName: 'Adams',
-        telNum: 1234567890,
-        email: 'miriadams@aol.com'
-    };
+    const response = contactImpl.getContactDB(call.request)
+
     try{
-        if(call.request.firstName === response.firstName){
-            callback(null, response);
+        console.log('back in server with data', response)
+        callback(null, response);
         }
 
-    }
     catch(err){
         console.log(err, 'got an error')
     }

@@ -14,14 +14,14 @@ const ContactService = grpc.loadPackageDefinition(pkgDef).ContactService;
 
 const client = new ContactService("localhost:3500", grpc.credentials.createInsecure());
 
-const request = {firstName: 'Miri', lastName: 'Adams'};
+const request = {firstName: 'Patryk', lastName: 'Ngyuen'};
 
 client.GetContact(request, (err, contact) => {
-    if(err) {
-        console.log(`err: ${err}`);
-    } else {
-        //console.log(contact);
-        return contact
+    try{
+        console.log('here is the contact: ', contact)
+    }
+    catch(err) {
+        console.log(err)
     }
 })
 
@@ -34,10 +34,10 @@ client.GetContactList({}, (err, contact) => {
     }
 })
 
-client.CreateContact({firstName: 'Patryk', lastName: 'Ngyuen', telNum: 1234567890, email: 'patNgyuen@aol.com'}, (err, contact) => {
-    if(err) {
-        console.log(`error creating contact`);
-    } else {
-        console.log(`Contact created: ${contact.firstName}`)
+client.CreateContact({firstName: 'mel', lastName: 'Ngyuen', telNum: 1234567890, email: 'patNgyuen@aol.com'}, (err, contact) => {
+    try {
+        console.log('contact created')
+    } catch(err) {
+        console.log(err)
     }
 })
