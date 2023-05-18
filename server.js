@@ -70,10 +70,16 @@ const getContactList = (call, callback) => {
 }
 
 const createContact = (call, callback) => {
-    const res = contactImpl.addContactDB(call);   
+    console.log(`createContact invoked`)
+    const res = contactImpl.addContactDB(call.request);
+    try {
+        callback(null, res)
+    } catch(err) {
+        console.log(`error in createContact:`, err)
+    }
 }
 
-grpcServer.addService(contactsProto.ContactService.service, {GetContact: getContact, GetContactList: getContactList});
+grpcServer.addService(contactsProto.ContactService.service, {GetContact: getContact, GetContactList: getContactList, CreateContact: createContact});
 
 grpcServer.bindAsync("127.0.0.1:3500", grpc.ServerCredentials.createInsecure(), (err, port) => {
     console.log(`listening on port ${port}`);

@@ -20,7 +20,8 @@ client.GetContact(request, (err, contact) => {
     if(err) {
         console.log(`err: ${err}`);
     } else {
-        console.log(contact);
+        //console.log(contact);
+        return contact
     }
 })
 
@@ -28,14 +29,15 @@ client.GetContactList({}, (err, contact) => {
     if(err) {
         console.log(`err in getContactList client: ${err}`);
     } else {
-        console.log(contact);
+        //console.log(contact);
+        return contact
     }
 })
 
-client.CreateContactList({firstName: 'Patryk', lastName: 'Ngyuen', telNum: 1234567890, email: 'patNgyuen@aol.com'}, (err, contact) => {
+client.CreateContact({firstName: 'Patryk', lastName: 'Ngyuen', telNum: 1234567890, email: 'patNgyuen@aol.com'}, (err, contact) => {
     if(err) {
         console.log(`error creating contact`);
     } else {
-        console.log(`Contact created: ${contact}`)
+        console.log(`Contact created: ${contact.firstName}`)
     }
 })

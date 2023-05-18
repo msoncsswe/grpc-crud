@@ -1,10 +1,10 @@
-
 const contactImpl = {};
 
-contactController.addContactDB = async (contact) => {
+contactImpl.addContactDB = (contact) => {
  //functionality to post 
- console.log(contact)
+ console.log(`addContact invoked`)
+ return contact;
 } 
 
-
+module.exports = contactImpl;
 
