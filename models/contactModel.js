@@ -10,14 +10,9 @@ const contactsSchema = new Schema ({
 
 const uri = "mongodb+srv://yuulspd:2E0FIR9VUBx13tyA@cluster0.95qytmd.mongodb.net/?retryWrites=true&w=majority"
 
-mongoose.connect(uri, (err) => {
-    if (err){
-        console.log(err)
-    }
-    else {
-        console.log('connected to the database')
-    }
-})
+mongoose.connect(uri)
+    .then(() => console.log('DB connected'))
+    .catch(err => console.log('err'))
 
 const Contacts = mongoose.model('Contacts', contactsSchema)
 
