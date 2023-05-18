@@ -19,49 +19,24 @@ const contactsProto = grpc.loadPackageDefinition(packageDef);
 const grpcServer = new grpc.Server();
 
 //this function gets one contact
-const getContact = (call, callback) => {
-
-    const response = {
-        firstName: 'Miri',
-        lastName: 'Adams',
-        telNum: 1234567890,
-        email: 'miriadams@aol.com'
-    };
+const getContact = async (call, callback) => {
+    console.log('trying to get contact')
     try{
-        if(call.request.firstName === response.firstName){
-            callback(null, response);
+        const response =  await contactImpl.getContactDB(call.request)
+        console.log('back in server with data', response)
+        await callback(null, response);
         }
 
-    }
     catch(err){
         console.log(err, 'got an error')
     }
 }
 
 //this function gets all of the contacts
-const getContactList = (call, callback) => {
-
-    const response = {
-        contacts: [
-            
-            {firstName: 'Miri',
-            lastName: 'Adams',
-            telNum: 1234567890,
-            email: 'miriadams@aol.com'
-            },
-            {
-            firstName: 'Mirison',
-            lastName: 'Steve',
-            telNum: 7234567891,
-            email: 'mirison@hotmail.com'}, 
-            {
-            firstName: 'Sonmiri',
-            lastName: 'Adamson',
-            telNum: 7733686465,
-            email: 'adamson@gmail.com'}
-        ]
-        }
+const getContactList = async (call, callback) => {
         try{
+            const response = await contactImpl.getContactList({})
+            console.log('this is response', response)
             callback(null, response)
         }
         catch(err){
