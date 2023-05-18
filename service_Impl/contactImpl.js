@@ -11,18 +11,35 @@ contactImpl.addContactDB = (contact) => {
 } 
 
 //get contact
-contactImpl.getContactDB = (contact) => {
+contactImpl.getContactDB =  (contact) => {
     console.log('in the getContactDB method')
-    Contacts.findOne(contact)
+     const k = Contacts.findOne(contact)
     .then((data) => {
         if(data === null){
             console.log('did not find contact')
         }else{
             console.log('in contactImpl with data: ', data)
-            return data
+             return data
         }
     })
     .catch(err => console.log('error in getting contact'))
+    return k; 
+}
+
+contactImpl.getContactList = (contact) => {
+    console.log('in getcontactlist method')
+    const allContactList = Contacts.find(contact)
+    .then((data) => {
+        if(data === null){
+            console.log('did not find contact list')
+        } else{
+            console.log('in contactImpl with data: ', data)
+            return data
+        }
+    })
+    .catch(err => console.log('error in getting all contacts'))
+    console.log(allContactList)
+    return allContactList
 }
 
 module.exports = contactImpl;

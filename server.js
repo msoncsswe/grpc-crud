@@ -19,14 +19,12 @@ const contactsProto = grpc.loadPackageDefinition(packageDef);
 const grpcServer = new grpc.Server();
 
 //this function gets one contact
-const getContact = (call, callback) => {
+const getContact = async (call, callback) => {
     console.log('trying to get contact')
-
-    const response = contactImpl.getContactDB(call.request)
-
     try{
-        console.log('back in server with data', response)
-        callback(null, response);
+        const response =  await contactImpl.getContactDB(call.request)
+        await console.log('back in server with data', response)
+        await callback(null, response);
         }
 
     catch(err){
@@ -35,30 +33,11 @@ const getContact = (call, callback) => {
 }
 
 //this function gets all of the contacts
-const getContactList = (call, callback) => {
-
-    const response = {
-        contacts: [
-            
-            {firstName: 'Miri',
-            lastName: 'Adams',
-            telNum: 1234567890,
-            email: 'miriadams@aol.com'
-            },
-            {
-            firstName: 'Mirison',
-            lastName: 'Steve',
-            telNum: 7234567891,
-            email: 'mirison@hotmail.com'}, 
-            {
-            firstName: 'Sonmiri',
-            lastName: 'Adamson',
-            telNum: 7733686465,
-            email: 'adamson@gmail.com'}
-        ]
-        }
+const getContactList = async (call, callback) => {
         try{
-            callback(null, response)
+            const response = await contactImpl.getContactList(call.request)
+            console.log('this is response', response)
+            await callback(null, response)
         }
         catch(err){
             console.log(err, 'this is an error bish')
