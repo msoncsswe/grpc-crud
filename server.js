@@ -4,6 +4,7 @@ const PROTO_FILE = './proto/contacts.proto';
 const Contacts = require('./models/contactModel');
 const contactImpl = require('./service_Impl/contactImpl');
 
+
 const options = {
     keepCase: true,
     longs: String,
