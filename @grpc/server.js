@@ -1,8 +1,8 @@
 const grpc = require('@grpc/grpc-js');
 const protoLoader = require('@grpc/proto-loader');
 const PROTO_FILE = './proto/contacts.proto';
-const Contacts = require('./models/contactModel');
-const contactImpl = require('./service_Impl/contactImpl');
+const Contacts = require('../models/contactModel');
+const contactImpl = require('./contactImpl');
 
 const options = {
     keepCase: true,
@@ -15,8 +15,6 @@ const options = {
 const packageDef = protoLoader.loadSync(PROTO_FILE, options);
 
 const contactsProto = grpc.loadPackageDefinition(packageDef);
-
-const grpcServer = new grpc.Server();
 
 //this function gets one contact
 const getContact = async (call, callback) => {

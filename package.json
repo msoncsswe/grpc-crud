@@ -23,6 +23,14 @@
     "@grpc/grpc-js": "^1.8.14",
     "@grpc/proto-loader": "^0.7.7",
     "mongodb": "^5.5.0",
-    "mongoose": "^7.1.1"
+    "mongoose": "^7.1.1",
+    "nice-grpc": "^2.1.4",
+    "nice-grpc-prometheus": "^0.1.6",
+    "prom-client": "^14.2.0"
+  },
+  "devDependencies": {
+    "grpc-tools": "^1.12.4",
+    "ts-proto": "^1.147.3",
+    "typescript": "^5.0.4"
   }
 }
