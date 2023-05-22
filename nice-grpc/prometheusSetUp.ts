@@ -6,7 +6,7 @@ const globalRegistry= promClient.register;
 //Registry is the class in prom-client (lambda Registry)
 const {Registry} = promClient;
 
-//console.log(`globalRegistry: ${globalRegistry}, Registry: ${Registry}`)
+console.log(`globalRegistry: ${globalRegistry}, Registry: ${Registry}`)
 
 //require nice-grpc-prometheus
 const niceGrpcClient = require('nice-grpc-prometheus');

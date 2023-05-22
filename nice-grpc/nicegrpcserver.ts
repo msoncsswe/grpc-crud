@@ -7,6 +7,16 @@ const {createServer} = require('nice-grpc');
 const { prometheusServerMiddleware} = require('nice-grpc-prometheus');
 const contactImpl = require('../@grpc/contactImpl')
 
+//import contact messages from contact.ts
+import { ContactRequest } from "../contacts";
+import { ContactResponse } from "../contacts";
+
+//functionality to get one contact
+const getContact = async(call:  ContactRequest, callback: () =>) : ContactResponse  => {
+    const response = await contactImpl.getContactDB(call)
+}
+
+
 const server = createServer()
     .use(prometheusServerMiddleware())
     .use(contactImpl.getContactDB)
